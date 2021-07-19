@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Container, Heading } from "@chakra-ui/react";
-import "./styles.css";
-import Finder from "./features/Finder/Finder";
+import "../styles.css";
+import Finder from "../features/Finder/Finder";
 
 export default function App() {
   return (
