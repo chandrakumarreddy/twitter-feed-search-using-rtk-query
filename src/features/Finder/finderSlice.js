@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice,current } from "@reduxjs/toolkit";
 import { findTweets } from "./findTweets";
 
 const FETCH_TWEETS = "FETCH_TWEETS";
@@ -7,7 +7,7 @@ const INITIAL_STATE = { tweets: [] };
 export const fetchTweets = createAsyncThunk(
   FETCH_TWEETS,
   async (params, thunkAPI) =>
-    await findTweets(params.searchValue, params.numberOfResults)
+      await findTweets(params.searchValue, params.numberOfResults)
 );
 
 const finderSlice = createSlice({
@@ -28,6 +28,7 @@ const finderSlice = createSlice({
       state.isLoading = true;
     },
     [fetchTweets.rejected]: (state, { payload }) => {
+      current(state)
       state.isLoading = false;
       state.error = payload;
     }
